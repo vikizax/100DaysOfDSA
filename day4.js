@@ -91,8 +91,10 @@ function flipBitsMax1Count(arr, n) {
  * @returns number
  */
 function maxSubSumKConcat(arr, n, k) {
+  // drawback of this approch: will lead to timeout issue if the test case arr is very 
+  //large and as well as concatination times is greater.
   let sum = 0;
-  let maxSum = -Infinity;
+  let maxSum = 0;
 
   for (let i = 0; i < n * k; i++) {
     let access = i % n;
@@ -102,10 +104,13 @@ function maxSubSumKConcat(arr, n, k) {
       sum = 0;
     }
   }
+  console.log('final maxSum: ',maxSum);
   return maxSum;
 }
-
-console.log(maxSubSumKConcat([1, 3], 2, 3), "== 12");
-console.log(maxSubSumKConcat([1, -2, 1], 3, 2), "== 2");
-console.log(maxSubSumKConcat([7, -278, -38, -4, -5, 10], 6, 7), "== 17");
-console.log(maxSubSumKConcat([-17, -278, -38, -4, -5, -67], 6, 7), "== -4");
+[-1, -2];
+7;
+// console.log(maxSubSumKConcat([1, 3], 2, 3), "== 12");
+// console.log(maxSubSumKConcat([1, -2, 1], 3, 2), "== 2");
+// console.log(maxSubSumKConcat([7, -278, -38, -4, -5, 10], 6, 7), "== 17");
+// console.log(maxSubSumKConcat([-17, -278, -38, -4, -5, -67], 6, 7), "== -4");
+console.log(maxSubSumKConcat([-1, -2], 2, 7), "== 0");
