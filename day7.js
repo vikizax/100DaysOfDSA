@@ -175,39 +175,4 @@ function printDigitsLToR(n) {
     ten_base = Math.floor(ten_base / 10);
   }
 }
-// printDigitsLToR(1239982123123);
-
-// Find the inverse of a number n, given that given number is valid for inverse
-// eg: 132 will be 312
-// /**
-//  * @param {number} n
-//  * @returns {number}
-//  */
-// function getInverse(n) {
-//   const inverseArr = [];
-//   const numArr = [];
-//   let position = 0;
-//   while (n != 0) {
-//     const remainder = n % 10;
-//     numArr.push(remainder);
-//     n = Math.floor(n / 10);
-//     inverseArr[remainder]
-//   }
-
-//   console.log(numArr);
-// }
-
-// /**
-//  * @param {number} n
-//  * @returns {number}
-//  */
-// function getDigitCount(n) {
-//   let count = 0;
-//   while (n != 0) {
-//     count++;
-//     n = Math.floor(n / 10);
-//   }
-//   return count;
-// }
-
-// getInverse(123765);
+printDigitsLToR(1239982123123);

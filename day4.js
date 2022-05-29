@@ -107,8 +107,8 @@ function maxSubSumKConcat(arr, n, k) {
   console.log('final maxSum: ',maxSum);
   return maxSum;
 }
-[-1, -2];
-7;
+// [-1, -2];
+// 7;
 // console.log(maxSubSumKConcat([1, 3], 2, 3), "== 12");
 // console.log(maxSubSumKConcat([1, -2, 1], 3, 2), "== 2");
 // console.log(maxSubSumKConcat([7, -278, -38, -4, -5, 10], 6, 7), "== 17");
