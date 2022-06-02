@@ -47,7 +47,7 @@ const find_permutation = function (str, pattern) {
     if (window_size >= pattern.length ) {
       const left_char = str[window_start];
       if (kMap.has(left_char)) {
-        if (kMap.get(left_char) === 0) match_conditions += 1;
+        if (kMap.get(left_char) === 0) match_conditions -= 1;
         kMap.set(left_char, kMap.get(left_char) + 1);
       }
       window_start++;
