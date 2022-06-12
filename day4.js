@@ -61,23 +61,27 @@ function flipBitsMax1Count(arr, n) {
       continue;
     }
 
-    if (zeroCounter < 0) zeroCounter = 0;
-    else {
+    if (zeroCounter < 0) {
+      zeroCounter = 0;
       zeroCounter += 1;
-      maxZeroCounter = Math.max(zeroCounter, maxZeroCounter);
+    } else {
+      zeroCounter += 1;
     }
+    maxZeroCounter = Math.max(zeroCounter, maxZeroCounter);
   }
 
   return maxZeroCounter + oneCounter;
 }
 
-// console.log(flipBitsMax1Count([1, 0, 0, 1, 0], 5), "== 4");
-// console.log(flipBitsMax1Count([1, 1, 1, 0], 4), "== 4");
-// console.log(flipBitsMax1Count([0, 0, 1, 0, 0], 5), "== 4");
+console.log(flipBitsMax1Count([1, 0, 0, 1, 0], 5), "== 4");
+console.log(flipBitsMax1Count([1, 1, 1, 0], 4), "== 4");
+console.log(flipBitsMax1Count([0, 0, 1, 0, 0], 5), "== 4");
+console.log(flipBitsMax1Count([1, 1, 0, 0, 1], 5), "== 5");
 
 /**
  *You have been given a vector/list 'ARR' consisting of ‘N’ integers. You are also given a positive integer ‘K’.
- *Let’s define a vector/list 'CONCAT' of size 'N * K' formed by concatenating 'ARR' ‘K’ times. For example, if 'ARR' = [0, -1, 2] and 'K' = 3, then 'CONCAT' is given by [0, -1, 2, 0, -1, 2, 0, -1, 2].
+ *Let’s define a vector/list 'CONCAT' of size 'N * K' formed by concatenating 'ARR' ‘K’ times. 
+ For example, if 'ARR' = [0, -1, 2] and 'K' = 3, then 'CONCAT' is given by [0, -1, 2, 0, -1, 2, 0, -1, 2].
  *Your task is to find the maximum possible sum of any non-empty subarray (contagious) of 'CONCAT'.
  *For the first test case, vector 'CONCAT' is obtained by concatenating vector [1, 3] three times.
  *'CONCAT' = [1, 3, 1, 3, 1, 3]
@@ -91,7 +95,7 @@ function flipBitsMax1Count(arr, n) {
  * @returns number
  */
 function maxSubSumKConcat(arr, n, k) {
-  // drawback of this approch: will lead to timeout issue if the test case arr is very 
+  // drawback of this approch: will lead to timeout issue if the test case arr is very
   //large and as well as concatination times is greater.
   let sum = 0;
   let maxSum = 0;
@@ -104,13 +108,12 @@ function maxSubSumKConcat(arr, n, k) {
       sum = 0;
     }
   }
-  console.log('final maxSum: ',maxSum);
+  console.log("final maxSum: ", maxSum);
   return maxSum;
 }
-// [-1, -2];
-// 7;
+
 // console.log(maxSubSumKConcat([1, 3], 2, 3), "== 12");
 // console.log(maxSubSumKConcat([1, -2, 1], 3, 2), "== 2");
 // console.log(maxSubSumKConcat([7, -278, -38, -4, -5, 10], 6, 7), "== 17");
 // console.log(maxSubSumKConcat([-17, -278, -38, -4, -5, -67], 6, 7), "== -4");
-console.log(maxSubSumKConcat([-1, -2], 2, 7), "== 0");
+// console.log(maxSubSumKConcat([-1, -2], 2, 7), "== 0");

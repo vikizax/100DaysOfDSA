@@ -12,42 +12,42 @@
  * @param {number} n size of array
  * @param {number} k times to concatinate
  * @returns number
- * 
+ *
  * optimse solution for huge dataset
  */
 function maxSubSumKConcat(arr, n, k) {
-    let maxSubSum;
-    let arrSum = 0;
-    if(k === 1) {
-        return kadanes(arr, n, k)
-    }
+  let maxSubSum;
+  let arrSum = 0;
+  if (k === 1) {
+    return kadanes(arr, n, k);
+  }
 
-    // case when concat time is greater  1< k <=n times
-    // cumulated sum of all elements in given array arr
-    for(let i =0; i < n; i++) {
-        arrSum+= arr[i];
-    }
-    
-    if(arrSum <= 0) {
-        maxSubSum = kadanes(arr, n, 2);
-    }else {
-        maxSubSum = kadanes(arr, n, 2);
-        maxSubSum+= (k-2) * arrSum;
-    }
-    return maxSubSum;
+  // case when concat time is greater  1< k <=n times
+  // cumulated sum of all elements in given array arr
+  for (let i = 0; i < n; i++) {
+    arrSum += arr[i];
+  }
+
+  if (arrSum <= 0) {
+    maxSubSum = kadanes(arr, n, 2);
+  } else {
+    maxSubSum = kadanes(arr, n, 2);
+    maxSubSum += (k - 2) * arrSum;
+  }
+  return maxSubSum;
 }
 
 function kadanes(arr, n, k) {
-    let sum = 0;
-    let maxSum = 0;
-  
-    for (let i = 0; i < n * k; i++) {
-      let access = i % n;
-      sum += arr[access];
-      maxSum = Math.max(sum, maxSum);
-      if (sum < 0) {
-        sum = 0;
-      }
+  let sum = 0;
+  let maxSum = 0;
+
+  for (let i = 0; i < n * k; i++) {
+    let access = i % n;
+    sum += arr[access];
+    maxSum = Math.max(sum, maxSum);
+    if (sum < 0) {
+      sum = 0;
     }
-    return maxSum;
   }
+  return maxSum;
+}

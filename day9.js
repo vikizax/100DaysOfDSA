@@ -43,10 +43,11 @@ function smallestSubArraySize(arr, sum) {
     currentWindowSum += arr[windowEnd];
 
     while (currentWindowSum >= sum) {
-      smallestSubArray = Math.min(
-        smallestSubArray,
-        windowEnd - windowStart + 1
-      );
+      if (currentWindowSum === sum)
+        smallestSubArray = Math.min(
+          smallestSubArray,
+          windowEnd - windowStart + 1
+        );
       currentWindowSum -= arr[windowStart];
       windowStart++;
     }

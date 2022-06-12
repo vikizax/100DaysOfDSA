@@ -175,4 +175,4 @@ function printDigitsLToR(n) {
     ten_base = Math.floor(ten_base / 10);
   }
 }
-printDigitsLToR(1239982123123);
+// printDigitsLToR(1239982123123);
