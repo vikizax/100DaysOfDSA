@@ -61,10 +61,77 @@ function skip_count(str, p) {
   return p;
 }
 
-console.log(backspace_compare("xy#z", "xzz#"), "== true");
-console.log(backspace_compare("xywrrmp", "xywrrmu#p"), "== true");
-console.log(backspace_compare("ab##", "c#d#"), "== true");
-console.log(backspace_compare("a#c", "b"), "== false");
-console.log(backspace_compare("nzp#o#g", "b#nzp#o#g"), "== true");
-console.log(backspace_compare("xywrrmp", "xywrrm#p"), "== false");
-console.log(backspace_compare("bbbextm", "bbb#extm"), "== false");
+// console.log(backspace_compare("xy#z", "xzz#"), "== true");
+// console.log(backspace_compare("xywrrmp", "xywrrmu#p"), "== true");
+// console.log(backspace_compare("ab##", "c#d#"), "== true");
+// console.log(backspace_compare("a#c", "b"), "== false");
+// console.log(backspace_compare("nzp#o#g", "b#nzp#o#g"), "== true");
+// console.log(backspace_compare("xywrrmp", "xywrrm#p"), "== false");
+// console.log(backspace_compare("bbbextm", "bbb#extm"), "== false");
+
+/** 
+Minimum Window Sort (medium)
+Given an array, find the length of the smallest subarray in 
+it which when sorted will sort the whole array.
+
+Example 1:
+Input: [1, 2, 5, 3, 7, 10, 9, 12]
+Output: 5
+Explanation: We need to sort only the subarray [5, 3, 7, 10, 9] to make the whole array sorted
+
+Example 2:
+Input: [1, 3, 2, 0, -1, 7, 10]
+Output: 5
+Explanation: We need to sort only the subarray [1, 3, 2, 0, -1] to make the whole array sorted
+*/
+/**
+ *
+ * @param {number[]} arr
+ */
+function shortest_window_sort(arr) {
+  let low = 0;
+  let high = arr.length - 1;
+
+  // first unsorted element from low side
+  while (low < arr.length - 1 && arr[low] <= arr[low + 1]) {
+    low += 1;
+  }
+
+  if (low === arr.length - 1) return 0; // means arr is sorted already
+
+  // first unsorted elemet from the high side
+  while (high > 0 && arr[high] >= arr[high - 1]) {
+    high -= 1;
+  }
+
+  let min_value = Number.MAX_SAFE_INTEGER;
+  let max_value = Number.MIN_SAFE_INTEGER;
+  // get the min and max value within first unorder numbers sub array
+  for (let index = low; index < high + 1; index++) {
+    min_value = Math.min(min_value, arr[index]);
+    max_value = Math.max(max_value, arr[index]);
+  }
+
+  // correct the sub array size from low end
+  // by comparing min value in sub array from the low end
+  // if low end value is greater than than the min value of sub arr then
+  // increase the window size from low end
+  while (low > 0 && arr[low - 1] > min_value) {
+    low -= 1;
+  }
+
+  // same way current sub array size from high end
+  // if the max value of sub array is greater than the high end value
+  // increase the window size from high end
+  while (high < arr.length - 1 && arr[high + 1] < max_value) {
+    high += 1;
+  }
+
+  // return the sub array size (or window size)
+  return high - low + 1;
+}
+
+console.log(shortest_window_sort([1, 2, 5, 3, 7, 10, 9, 12]), "== 5");
+console.log(shortest_window_sort([1, 3, 2, 0, -1, 7, 10]), "== 5");
+console.log(shortest_window_sort([1, 2, 3]), "== 0");
+console.log(shortest_window_sort([3, 2, 1]), "== 3");
