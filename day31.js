@@ -31,51 +31,39 @@ Explanation: The array does not have any cycle.
  *
  * @param {number[]} arr
  */
-function circular_array_loop_exists(arr) {
+const circular_array_loop_exists = function (arr) {
   for (let sIndex = 0; sIndex < arr.length; sIndex++) {
-    let isForward = arr[sIndex] >= 0;
+    if (arr[sIndex] === 0) continue;
     let slow = sIndex;
     let fast = sIndex;
-
+    const isForward = arr[sIndex] >= 0;
     while (true) {
       slow = next_index(arr, isForward, slow);
-      fast = next_index(arr, isForward, fast);
-
+      fast = next_index(arr, isForward, next_index(arr, isForward, fast));
       if (slow === -1 || fast === -1) break;
-
-      fast = next_index(arr, isForward, fast);
-
-      if (fast === -1 || slow === fast) break;
+      if (slow === fast) return true;
     }
-
-    if (slow !== -1 && fast !== -1 && slow === fast) return true;
+    // mark all the visited index belonging to path from sIndex
+    slow = sIndex;
+    while (next_index(arr, isForward, slow) !== -1) {
+      arr[slow] = 0;
+      slow = next_index(arr, isForward, slow);
+    }
   }
+
   return false;
-}
+};
 
-/**
- *
- * @param {number[]} arr - steps array
- * @param {boolean} isForward - forward or backward
- * @param {number} pointer - index
- * @returns {number}
- */
 function next_index(arr, isForward, pointer) {
-  let direction = arr[pointer] >= 0;
-
-  if (direction !== isForward) return -1;
-
-  let next_index = (pointer + arr[pointer]) % arr.length;
-
-  // turns negative index to positive representation
-  if (next_index < 0) {
-    next_index += arr.length;
+  if (pointer === -1) return -1;
+  const direction = arr[pointer] >= 0;
+  if (isForward !== direction) return -1;
+  let next = (pointer + arr[pointer]) % arr.length;
+  if (next < 0) {
+    next = next + arr.length;
   }
-
-  // if the next index return back to the current
-  if (next_index === pointer) return -1;
-
-  return next_index;
+  if (next === pointer) return -1;
+  return next;
 }
 
 console.log(circular_array_loop_exists([1, 2, -1, 2, 2]), "== true");
