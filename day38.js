@@ -1,10 +1,15 @@
 /**
  * MIN HEAP : Implementation!
  *
- *
  * get left child: index * 2
  * get right child: index * 2 + 1
  * get parent : index / 2
+ * 
+ * time complexity:
+ * get the minimun num: O(1);
+ * insertion: O(logn)
+ * remove: O(logn)
+ * sort: O(nlogn)
  */
 class MinHeap {
   #heap = [null];
@@ -52,7 +57,9 @@ class MinHeap {
 
   remove() {
     let smallest = this.#heap[1];
-    if (this.#heap.length > 2) {
+    if (this.#heap.length === 2) {
+      this.#heap.pop();
+    } else if (this.#heap.length > 2) {
       this.#heap[1] = this.#heap[this.#heap.length - 1];
       this.#heap.pop();
       if (this.#heap.length === 3) {
@@ -93,8 +100,6 @@ class MinHeap {
           break;
         }
       }
-    } else if (this.#heap.length === 2) {
-      this.#heap.pop();
     } else {
       return null;
     }
