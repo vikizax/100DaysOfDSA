@@ -57,10 +57,10 @@ class MinHeap {
 
   remove() {
     let smallest = this.#heap[1];
+    this.#heap[1] = this.#heap[this.#heap.length - 1];
     if (this.#heap.length === 2) {
       this.#heap.pop();
     } else if (this.#heap.length > 2) {
-      this.#heap[1] = this.#heap[this.#heap.length - 1];
       this.#heap.pop();
       if (this.#heap.length === 3) {
         if (this.#heap[1] > this.#heap[2]) {
@@ -120,10 +120,10 @@ class MinHeap {
 const minHeap = new MinHeap();
 
 minHeap.insert(10);
-minHeap.insert(12);
-minHeap.insert(2);
-minHeap.insert(1);
-minHeap.insert(5);
+// minHeap.insert(12);
+// minHeap.insert(2);
+// minHeap.insert(1);
+// minHeap.insert(5);
 
 // console.log(minHeap.heapifyArr);
 
