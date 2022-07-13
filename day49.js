@@ -20,7 +20,7 @@ class Node {
 }
 
 function reverse_sub_list(head, p, q) {
-  if (p === q) return head;
+  if (p === q || p <= 0 || q <= 0) return head;
   let pNode = null;
   let qNode = null;
   let headIterNode = head;
