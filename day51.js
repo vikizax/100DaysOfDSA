@@ -24,41 +24,40 @@ class Node {
 }
 
 function reverse_alternate_k_elements(head, k) {
-  let skip = false;
+  if (k <= 1 || head === null) return head;
+
   let current = head;
   let prev = null;
 
-  while (true) {
+  while (current !== null) {
     let prev_list_last_node = prev;
     let sub_list_last_node = current;
     let iter = 0;
     let next = null;
-    if (skip) {
-      while (current !== null && iter < k) {
-        prev = current;
-        current = current.next;
-        iter += 1;
-      }
-      skip = !skip;
-    } else {
-      iter = 0;
-      while (current !== null && iter < k) {
-        next = current.next;
-        current.next = prev;
-        prev = current;
-        current = next;
-        iter += 1;
-      }
-      skip = !skip;
-      if (prev_list_last_node !== null) {
-        prev_list_last_node.next = prev;
-      } else {
-        head = prev;
-      }
-      sub_list_last_node.next = current;
-      prev = sub_list_last_node;
+    // reverse k node
+    while (current !== null && iter < k) {
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+      iter += 1;
     }
-    if (current === null) break;
+
+    if (prev_list_last_node !== null) {
+      prev_list_last_node.next = prev;
+    } else {
+      head = prev;
+    }
+
+    sub_list_last_node.next = current;
+
+    iter = 0;
+    // skip k node
+    while (current !== null && iter < k) {
+      prev = current;
+      current = current.next;
+      iter += 1;
+    }
   }
 
   return head;
