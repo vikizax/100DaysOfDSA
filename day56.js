@@ -12,6 +12,7 @@ class TreeNode {
 }
 
 function find_level_averages(root) {
+  if (root == null || root == undefined) return [];
   const result = [];
   const queue = [];
 
