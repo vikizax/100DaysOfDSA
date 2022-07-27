@@ -42,7 +42,7 @@ function recursiveFindPaths(currentNode, sum, currentPathway, allPaths) {
     currentNode.left === null &&
     currentNode.right === null
   ) {
-    allPaths.push([...currentPathway]);
+    allPaths.push(Array.from(currentPathway));
   } else {
     recursiveFindPaths(
       currentNode.left,
