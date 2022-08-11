@@ -4,8 +4,7 @@
   "description": "100 days of learning DSA!\r My road map to DSA :)",
   "main": "day1.js",
   "type": "module",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vikizax/100DaysOfDSA.git"
