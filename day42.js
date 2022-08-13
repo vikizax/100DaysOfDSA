@@ -1,4 +1,4 @@
-import { PriorityQueue } from "@datastructures-js/priority-queue";
+const { PriorityQueue } = require("@datastructures-js/priority-queue");
 
 /**
  * Revision: Day 39 t0 Day 41!

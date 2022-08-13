@@ -1,4 +1,4 @@
-import { PriorityQueue } from "@datastructures-js/priority-queue";
+const { PriorityQueue } = require("@datastructures-js/priority-queue");
 /** 
 Problem Statement#
 Design a class to calculate the median of a number stream. 
@@ -30,6 +30,10 @@ class MedianOfAStream {
       this.minHeap.push(num);
     }
 
+    this.#balanceHeap();
+  }
+
+  #balanceHeap() {
     if (this.maxHeap.size() > this.minHeap.size() + 1) {
       this.minHeap.push(this.maxHeap.pop());
     } else if (this.maxHeap.size() < this.minHeap.size()) {
@@ -39,7 +43,7 @@ class MedianOfAStream {
 
   findMedian() {
     if (this.maxHeap.size() === this.minHeap.size())
-      return this.maxHeap.front() + this.minHeap.front() / 2;
+      return (this.maxHeap.front() + this.minHeap.front()) / 2;
     return this.maxHeap.front();
   }
 }
